@@ -1,0 +1,48 @@
+.chatOnlineTitle {
+    width: 90%;
+    padding: 10px 0px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+}
+
+.chatOnlineEmpty {
+    margin-top: 10px;
+    color: gray;
+}
+
+.chatOnlineFrined {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.chatOnlineFrined:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.chatOnlineImgContainer {
+    position: relative;
+    margin-right: 10px;
+}
+
+.chatOnlineImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatOnlineBadge {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    border: 1px solid white;
+    top: 0;
+    right: 0;
+}

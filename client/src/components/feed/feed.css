@@ -1,0 +1,12 @@
+.feed {
+    flex: 7.5;
+}
+
+.feedWrapper {
+    padding: 20px;
+}
+
+.feedEmpty {
+    margin-top: 20px;
+    color: gray;
+}

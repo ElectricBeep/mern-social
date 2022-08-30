@@ -11,7 +11,7 @@ const SearchFeed = ({ query }) => {
     useEffect(() => {
         const getPostsBySearch = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/api/posts/search/findposts${query}`);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}posts/search/findposts${query}`);
                 setPosts(res.data);
             } catch (err) {
                 console.log(err);
@@ -20,7 +20,7 @@ const SearchFeed = ({ query }) => {
         getPostsBySearch();
         const getUsersBySearch = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/api/users/search/finduser${query}`);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users/search/finduser${query}`);
                 setUsers(res.data);
             } catch (err) {
                 console.log(err);

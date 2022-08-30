@@ -13,7 +13,7 @@ const BookmarkFeed = () => {
     useEffect(() => {
         const getBookmarkedPosts = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/users/bookmarks/" + user._id);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users/bookmarks/` + user._id);
                 setBookmarkedPosts(res.data);
             } catch (err) {
                 console.log(err);

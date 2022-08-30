@@ -19,7 +19,7 @@ export default function Rightbar({ user }) {
         if (user) {
             const getFriends = async () => {
                 try {
-                    const friendList = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/users/friends/" + user._id);
+                    const friendList = await axios.get(`${process.env.REACT_APP_BASE_URL}users/friends/` + user._id);
                     setFriends(friendList.data);
                 } catch (err) {
                     console.log(err);
@@ -33,7 +33,7 @@ export default function Rightbar({ user }) {
     const handleFollow = async () => {
         if (user) {
             try {
-                await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${user._id}/follow`, {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}users/${user._id}/follow`, {
                     userId: currentUser._id,
                 });
                 dispatch({ type: "FOLLOW", payload: user._id });
@@ -47,7 +47,7 @@ export default function Rightbar({ user }) {
     //FOr unfollowing
     const handleUnfollow = async () => {
         try {
-            await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${user._id}/unfollow`, {
+            await axios.put(`${process.env.REACT_APP_BASE_URL}users/${user._id}/unfollow`, {
                 userId: currentUser._id,
             });
             dispatch({ type: "UNFOLLOW", payload: user._id });
@@ -61,7 +61,7 @@ export default function Rightbar({ user }) {
     useEffect(() => {
         const getallUsers = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/users/all");
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users/all`);
                 setAllUsers(res.data);
             } catch (err) {
                 console.log(err);
@@ -97,10 +97,10 @@ export default function Rightbar({ user }) {
     //Sending user to messenger page and creating new conversation if neccessary
     const handleMessage = async () => {
         try {
-            const res = await axios.get(`https://mern-socialmedia-backend.herokuapp.com/api/conversations/find/${currentUser._id}/${user._id}`);
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}conversations/find/${currentUser._id}/${user._id}`);
             if (res.data === null) {
                 try {
-                    await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/conversations", {
+                    await axios.post(`${process.env.REACT_APP_BASE_URL}conversations`, {
                         senderId: currentUser._id,
                         receiverId: user._id
                     });

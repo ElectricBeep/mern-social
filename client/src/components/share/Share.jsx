@@ -31,12 +31,12 @@ export default function Share() {
             newPost.img = fileName;
             console.log(newPost);
             try {
-                await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/upload", data);
+                await axios.post(`${process.env.REACT_APP_BASE_URL}upload`, data);
             } catch (err) { }
             //.img is the field we created in our Post.js Model
         }
         try {
-            await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/posts", newPost);
+            await axios.post(`${process.env.REACT_APP_BASE_URL}posts`, newPost);
             window.location.reload(); //This line will refresh the page after adding the post
         } catch (err) { }
     };

@@ -26,7 +26,7 @@ export default function Post({ post, type }) {
     //Make request to get users data form api
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`https://mern-socialmedia-backend.herokuapp.com/api/users?userId=${post.userId}`);
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users?userId=${post.userId}`);
             setUser(res.data);
         };
         fetchUser();
@@ -34,7 +34,7 @@ export default function Post({ post, type }) {
 
     const likeHandler = () => {
         try {
-            axios.put("https://mern-socialmedia-backend.herokuapp.com/api/posts/" + post._id + "/like", { userId: currentUser._id });
+            axios.put(`${process.env.REACT_APP_BASE_URL}posts/` + post._id + "/like", { userId: currentUser._id });
         } catch (err) {
             console.log(err);
         }
@@ -46,7 +46,7 @@ export default function Post({ post, type }) {
     const handleDelete = () => {
         const deletePost = async () => {
             try {
-                const res = await axios.delete("https://mern-socialmedia-backend.herokuapp.com/api/posts/" + post._id);
+                const res = await axios.delete(`${process.env.REACT_APP_BASE_URL}posts/` + post._id);
                 console.log(res.data);
                 window.location.reload();
             } catch (err) {
@@ -75,7 +75,7 @@ export default function Post({ post, type }) {
                     setAlreadyBookmarked(false);
                 }, 2500);
             } else {
-                await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${post._id}/bookmark`, {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}users/${post._id}/bookmark`, {
                     userId: currentUser._id,
                 });
                 dispatch({ type: "BOOKMARK", payload: post._id });
@@ -93,7 +93,7 @@ export default function Post({ post, type }) {
     //To unbookmark post
     const handleUnbookmark = async () => {
         try {
-            await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${post._id}/unbookmark`, {
+            await axios.put(`${process.env.REACT_APP_BASE_URL}users/${post._id}/unbookmark`, {
                 userId: currentUser._id,
             });
             dispatch({ type: "UNBOOKMARK", payload: post._id });

@@ -12,7 +12,7 @@ const ChatOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
     useEffect(() => {
         const getFriends = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/users/friends/" + currentId);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users/friends/` + currentId);
                 setFriends(res.data);
             } catch (err) {
                 console.log(err);
@@ -29,10 +29,10 @@ const ChatOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
     //Set current chat when I click on user's profile picture or create new conversation
     const handleClick = async (user) => {
         try {
-            const res = await axios.get(`https://mern-socialmedia-backend.herokuapp.com/api/conversations/find/${currentId}/${user._id}`);
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}conversations/find/${currentId}/${user._id}`);
             if (res.data === null) {
                 try {
-                    await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/conversations", {
+                    await axios.post(`${process.env.REACT_APP_BASE_URL}conversations`, {
                         senderId: currentId,
                         receiverId: user._id
                     });

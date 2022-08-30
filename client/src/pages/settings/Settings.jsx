@@ -36,13 +36,13 @@ const Settings = () => {
             data.append("file", updatedProfilePic);
             updatedUser.profilePicture = fileName;
             try {
-                await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/upload", data);
+                await axios.post(`${process.env.REACT_APP_BASE_URL}upload`, data);
             } catch (err) {
                 console.log(err);
             }
         };
         try {
-            const res = await axios.put("https://mern-socialmedia-backend.herokuapp.com/api/users/" + user._id, updatedUser);
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}users/` + user._id, updatedUser);
             dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
             setSuccessfull(true);
             setTimeout(function () {
@@ -57,11 +57,8 @@ const Settings = () => {
     //To delete account
     const handleDelete = async (e) => {
         e.preventDefault();
-        // const userId = {
-        //     userId: user._id
-        // }
         try {
-            await axios.delete("https://mern-socialmedia-backend.herokuapp.com/api/users/" + user._id);
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}users/` + user._id);
             dispatch({ type: "LOGOUT" })
         } catch (err) {
             console.log(err);

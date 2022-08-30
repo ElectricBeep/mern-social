@@ -18,7 +18,7 @@ const CommentsSection = ({ post, setOpenComments }) => {
     useEffect(() => {
         const getPost = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/posts/" + post._id);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}posts/` + post._id);
                 setComments(res.data.comments);
             } catch (err) {
                 console.log(err);
@@ -31,7 +31,7 @@ const CommentsSection = ({ post, setOpenComments }) => {
     const handlePostComment = async () => {
         const finalComment = `${currentUser?.username}: ${commentText}`;
         try {
-            const res = await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/posts/" + post._id + "/comment", {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}posts/` + post._id + "/comment", {
                 comment: finalComment
             });
             //To give instant update to comments field on page

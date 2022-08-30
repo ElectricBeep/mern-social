@@ -23,7 +23,7 @@ export default function Profile() {
 	useEffect(() => {
 		const fetchUser = async () => {
 			//To get user from url we will use userParams
-			const res = await axios.get(`https://mern-socialmedia-backend.herokuapp.com/api/users?username=${username}`);
+			const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users?username=${username}`);
 			setUser(res.data);
 		};
 		fetchUser();
@@ -39,13 +39,13 @@ export default function Profile() {
 			data.append("file", updatedCoverPic);
 			updatedUser.coverPicture = fileName;
 			try {
-				await axios.post("https://mern-socialmedia-backend.herokuapp.com/api/upload", data);
+				await axios.post(`${process.env.REACT_APP_BASE_URL}upload`, data);
 			} catch (err) {
 				console.log(err);
 			}
 		};
 		try {
-			const res = await axios.put("https://mern-socialmedia-backend.herokuapp.com/api/users/" + currentUser._id, updatedUser);
+			const res = await axios.put(`${process.env.REACT_APP_BASE_URL}users/` + currentUser._id, updatedUser);
 			dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
 			console.log(res.data);
 			window.location.reload();

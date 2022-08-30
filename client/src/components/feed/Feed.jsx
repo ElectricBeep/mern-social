@@ -13,8 +13,8 @@ export default function Feed({ username }) {
     useEffect(() => {
         const fetchPosts = async () => {
             const res = username
-                ? await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/posts/profile/" + username)
-                : await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/posts/timeline/" + user._id);
+                ? await axios.get(`${process.env.REACT_APP_BASE_URL}posts/profile/` + username)
+                : await axios.get(`${process.env.REACT_APP_BASE_URL}posts/timeline/` + user._id);
             setPosts(res.data.sort((p1, p2) => { //This sort is used to sort posts by date
                 return new Date(p2.createdAt) - new Date(p1.createdAt);
             })

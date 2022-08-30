@@ -23,7 +23,7 @@ const Messenger = () => {
     //Also to get message from socket
     useEffect(() => {
         if (user) {
-            socket.current = io("https://mern-socialmedia-backend.herokuapp.com");
+            socket.current = io(process.env.REACT_APP_SOCKET_URL);
             socket.current.emit("addUser", user._id);
         }
         // socket.current = io("ws://localhost:8900");
@@ -47,7 +47,7 @@ const Messenger = () => {
     useEffect(() => {
         const fetchConversations = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/conversations/" + user._id);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}conversations/` + user._id);
                 setConversations(res.data);
             } catch (err) {
                 console.log(err);
@@ -60,7 +60,7 @@ const Messenger = () => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const res = await axios.get("https://mern-socialmedia-backend.herokuapp.com/api/messages/" + currentChat?._id);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}messages/` + currentChat?._id);
                 setMessages(res.data);
             } catch (err) {
                 console.log(err);

@@ -45,7 +45,7 @@ export default function Topbar() {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get(`https://mern-socialmedia-backend.herokuapp.com/api/users?userId=${user._id}`);
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}users?userId=${user._id}`);
                 setCurrentUser(res.data);
             } catch (err) {
                 console.log(err);
@@ -58,11 +58,11 @@ export default function Topbar() {
     const handleClearNotifications = async (type) => {
         try {
             if (type === "friend") {
-                await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${user._id}/deleteNotifications`);
+                await axios.put(`${process.env.REACT_APP_BASE_URL}users/${user._id}/deleteNotifications`);
             } else if (type === "message") {
-                await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${user._id}/deleteMessageNotifications`);
+                await axios.put(`${process.env.REACT_APP_BASE_URL}users/${user._id}/deleteMessageNotifications`);
             } else {
-                await axios.put(`https://mern-socialmedia-backend.herokuapp.com/api/users/${user._id}/deleteOtherNotifications`);
+                await axios.put(`${process.env.REACT_APP_BASE_URL}users/${user._id}/deleteOtherNotifications`);
             }
             window.location.reload();
         } catch (err) {

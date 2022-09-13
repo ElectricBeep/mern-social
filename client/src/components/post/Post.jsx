@@ -108,7 +108,7 @@ export default function Post({ post, type }) {
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <Link to={`profile/${user.username}`}>
+                        <Link to={`/profile/${user.username}`}>
                             <img
                                 src={
                                     user.profilePicture
@@ -120,7 +120,7 @@ export default function Post({ post, type }) {
                             />
                         </Link>
                         <Link
-                            to={`profile/${user.username}`}
+                            to={`/profile/${user.username}`}
                             style={{ textDecoration: "none", color: "inherit", display: "flex", alignItems: "center" }}
                         >
                             <span className="postUserName">
